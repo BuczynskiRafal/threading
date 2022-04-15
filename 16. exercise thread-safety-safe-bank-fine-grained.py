@@ -82,7 +82,11 @@ def validate_bank(accounts: List[Account], total: int, quiet=False) -> None:
     # with transfer_lock:
     #     current = sum(a.balance for a in accounts)
 
-    """acquire() - acquire a lock"""
+    """acquire() - acquire a lock
+    Reason for using sort on locked things is to be sure always
+    taking things in the same order, or there's a good chance 
+    for deadlock application. 
+    """
     [a.lock.acquire() for a in sorted(accounts, key=lambda x: id(x))]
 
     current = sum(a.balance for a in accounts)
