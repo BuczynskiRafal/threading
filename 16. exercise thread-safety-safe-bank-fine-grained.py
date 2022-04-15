@@ -112,6 +112,7 @@ def get_two_accounts(accounts: List[Account]):
     a_2 = a_1
     while a_2 == a_1:
         a_2 = random.choice(accounts)
+        a_2 = random.sample(accounts)
     return a_1, a_2
 
 
